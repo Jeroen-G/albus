@@ -1,0 +1,31 @@
+{
+  "name": "@jeroen-g/albus",
+  "version": "1.0.0",
+  "description": "CLI to help with agentic development in a more deterministic way",
+  "license": "MIT",
+  "author": "Jeroen",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeroen-g/albus.git"
+  },
+  "bin": { "albus": "./dist/albus" },
+  "files": ["dist/albus"],
+  "scripts": {
+    "build": "bun build src/cli.ts --compile --minify --bytecode --target=bun-darwin-arm64 --outfile dist/albus",
+    "prepublishOnly": "bun run build",
+    "lint": "eslint  && tsc --noEmit",
+    "fix": "eslint  --fix"
+  },
+  "dependencies": {
+    "commander": "^15.0.0",
+    "ora": "^8.0.1"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.2",
+    "eslint": "^9",
+    "eslint-config-shiny-code": "^3",
+    "eslint-import-resolver-typescript": "4.1.0",
+    "prettier": "^3.6",
+    "typescript": "^5"
+  }
+}

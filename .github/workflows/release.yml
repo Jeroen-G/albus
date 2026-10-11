@@ -1,0 +1,54 @@
+name: Release
+
+on:
+  push:
+    tags:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - run: bun install --frozen-lockfile
+
+      - run: bun run lint
+
+      - run: bun run build
+
+      - name: Prepare release asset and checksums
+        run: |
+          mkdir -p release
+          cp dist/albus release/albus-darwin-arm64
+          chmod +x release/albus-darwin-arm64
+          cd release
+          shasum -a 256 albus-darwin-arm64 > SHA256SUMS
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            release/albus-darwin-arm64
+            release/SHA256SUMS
+          generate_release_notes: true
+
+      - uses: actions/setup-node@v4
+        if: ${{ env.NPM_TOKEN != '' }}
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Publish to npm
+        if: ${{ env.NPM_TOKEN != '' }}
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
