@@ -51,3 +51,5 @@ bun install
 bun run lint     # eslint + tsc --noEmit
 bun run build    # produces dist/albus (macOS arm64)
 ```
+
+<img src="albus.png" alt="Albus" width="200"/>
