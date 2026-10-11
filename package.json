@@ -2,7 +2,7 @@
   "name": "@jeroeng/albus",
   "version": "1.0.0",
   "description": "CLI to help with agentic development in a more deterministic way",
-  "license": "MIT",
+  "license": "EUPL-1.2",
   "author": "Jeroen",
   "repository": {
     "type": "git",
@@ -10,6 +10,7 @@
   },
   "bin": { "albus": "./dist/albus" },
   "files": ["dist/albus"],
+  "publishConfig": { "access": "public" },
   "scripts": {
     "build": "bun build src/cli.ts --compile --minify --bytecode --target=bun-darwin-arm64 --outfile dist/albus",
     "prepublishOnly": "bun run build",
