@@ -6,7 +6,7 @@
   "author": "Jeroen",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jeroen-g/albus.git"
+    "url": "git+https://github.com/Jeroen-G/albus"
   },
   "bin": { "albus": "./dist/albus" },
   "files": ["dist/albus"],
