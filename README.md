@@ -9,8 +9,8 @@ Currently only built for macOS.
 With npm:
 
 ```shell
-npm install -g @jeroen-g/albus
-npx @jeroen-g/albus --help
+npm install -g @jeroeng/albus
+npx @jeroeng/albus --help
 ```
 
 ## Requirements
