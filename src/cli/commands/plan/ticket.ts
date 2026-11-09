@@ -1,7 +1,7 @@
 import { Command } from 'commander';
 
 import { describe, step } from '@/cli/step';
-import { JiraKey } from '@/planning/jira/fetchTicket';
+import { JiraKey, parseTicketReference } from '@/planning/jira/fetchTicket';
 import { fileHasContent } from '@/tooling/exists';
 import { collectFlag, opencodeRun } from '@/tooling/opencode';
 
@@ -27,10 +27,11 @@ export function definePlanTicket(program: Command) {
 }
 
 export async function runPlanTicket({
-    ticket,
+    ticket: reference,
     prompt,
     flag: callerFlags = [],
 }: PlanTicketInput): Promise<void> {
+    const { key: ticket } = parseTicketReference(reference);
     const ticketPath = `.spec/${ticket}/ticket.md`;
     const planPath = `.spec/${ticket}/plan.md`;
 
