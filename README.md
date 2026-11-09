@@ -23,6 +23,7 @@ Albus reaches out to other tools for the work it does.
 | Command                       | Description                                                  |
 |-------------------------------|--------------------------------------------------------------|
 | `albus jira:ticket <ticket>`  | Fetch a Jira ticket and save it to `.spec/<ticket>/ticket.md` |
+| `albus jira:ticket <url>`     | Fetch a ticket from the Atlassian profile that owns the URL     |
 | `albus plan:ticket <ticket>`* | Write an implementation plan for a saved ticket              |
 | `albus plan:test <ticket>`*   | Write a test plan for a saved ticket                         |
 | `albus plan:translate <path>` | Translate a planning file into English                       |
@@ -34,6 +35,8 @@ Albus reaches out to other tools for the work it does.
 Commands with an asterisk use OpenCode, you may override the default prompt with the `--prompt "<text>"` flag or add extra OpenCode run flags with `--flag "<flags>"`.
 
 Artifacts are written under `.spec/<ticket>/`.
+
+`jira:ticket` accepts a ticket key (`ABC-123`) or a full Atlassian URL (`https://abc.atlassian.net/browse/ABC-123`). A URL selects the matching profile from `atlassian-cli` automatically; use `--profile <profile>` to override it. The plan commands accept the same references and use the ticket key for the `.spec/` path.
 
 ## Skills
 

@@ -16,7 +16,7 @@ Run the installed `albus` executable and report the result; if it is unavailable
 | Show a completion notification                      | `albus mac:notify`            |
 | Keep the Mac and display awake for a duration       | `albus mac:awake <minutes>`   |
 | Keep the Mac and display awake without a time limit | `albus mac:awake`             |
-| Fetch a Jira ticket                                 | `albus jira:ticket <ticket>`  |
+| Fetch a Jira ticket                                 | `albus jira:ticket <ticket-or-url>` |
 | Write an implementation plan*                       | `albus plan:ticket <ticket>`  |
 | Write a test plan*                                  | `albus plan:test <ticket>`    |
 | Translate a planning file (in place)                | `albus plan:translate <path>` |
@@ -27,6 +27,8 @@ Use `albus --help` or `albus <command> --help` if command syntax or options are 
 Quote paths containing spaces.
 Commands with an asterisk use OpenCode, you may override the default prompt with the `--prompt "<text>"` flag or add extra OpenCode run flags with `--flag "<flags>"` if requested by the user.
 Artifacts are written under `.spec/<ticket>/`.
+
+`jira:ticket` accepts a ticket key (`ABC-123`) or a full Atlassian URL (`https://abc.atlassian.net/browse/ABC-123`). A URL selects the matching `atlassian-cli` profile automatically; add `--profile <profile>` to override it. The plan commands accept the same references and use the ticket key for the `.spec/` path.
 
 ## Keep the Mac awake
 
